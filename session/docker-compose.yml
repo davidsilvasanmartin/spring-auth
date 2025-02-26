@@ -1,0 +1,38 @@
+version: '3.8'
+
+networks:
+  app-network:
+    name: spring-auth-session-network
+
+volumes:
+  postgres-data:
+    name: spring-auth-session-postgres-data
+  redis-data:
+    name: spring-auth-session-redis-data
+
+services:
+  postgres:
+    container_name: spring-auth-session-postgres
+    image: postgres:17.4-bookworm
+    environment:
+      POSTGRES_DB: appdb
+      POSTGRES_USER: appuser
+      POSTGRES_PASSWORD: apppass
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    networks:
+      - app-network
+    restart: unless-stopped
+
+  redis:
+    container_name: spring-auth-session-redis
+    image: redis:8.0-M03-bookworm
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+    networks:
+      - app-network
+    restart: unless-stopped
