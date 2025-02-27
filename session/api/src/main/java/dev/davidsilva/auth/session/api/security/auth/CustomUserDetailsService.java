@@ -1,4 +1,4 @@
-package dev.davidsilva.auth.session.api.security;
+package dev.davidsilva.auth.session.api.security.auth;
 
 import dev.davidsilva.auth.session.api.security.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
