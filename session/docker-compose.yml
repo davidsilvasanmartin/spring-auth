@@ -32,6 +32,9 @@ services:
     image: redis:8.0-M03-bookworm
     ports:
       - "6379:6379"
+    environment:
+      REDIS_HOST: localhost
+      REDIS_PASSWORD: session
     volumes:
       - redis-data:/data
     networks:
